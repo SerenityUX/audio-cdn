@@ -25,6 +25,11 @@ const upload = multer({
 }).any();
 
 export default async (req, res) => {
+
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Adjust this to be more restrictive if needed
+  res.setHeader('Access-Control-Allow-Methods', 'POST');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
   upload(req, res, async (err) => {
     if (err instanceof multer.MulterError) {
       return res.status(500).send(err);
