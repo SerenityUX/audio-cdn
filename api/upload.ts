@@ -15,13 +15,6 @@ const upload = multer({
     fileSize: 1024 * 1024 * 5,
     files: 1,
   },
-  fileFilter: (_, file, cb) => {
-    if (!file.mimetype.includes("audio")) {
-      cb(new Error("Only audio files are allowed."));
-    } else {
-      cb(null, true);
-    }
-  },
   storage: multerS3({
     s3: s3,
     bucket: process.env.C_AWS_BUCKET_NAME as string,
